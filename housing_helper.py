@@ -32,8 +32,8 @@ def float_input(input_: str) -> bool:
 
 def find_bodies() -> List['Tag']:
     """
-    Returns a list of tag objects from GROUP_PAGE.html, each object containing a
-    separate post and its comments.
+    Returns a list of tag objects from GROUP_PAGE.html, each object containing
+    a separate post and its comments.
     """
     file = open('GROUP_PAGE.html', 'rb')
     soup = BeautifulSoup(file, 'html.parser')

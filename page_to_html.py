@@ -10,7 +10,8 @@ ID = {'email': 'email', 'pass': 'pass', 'login': 'loginbutton',
       'generic': 'facebook'}
 TEXT = {'view': ' more comment', 'one_reply': '1 Reply',
         'mult_reply': ' Replies', 'more_reply': 'View more replies',
-        'activity': 'RECENT ACTIVITY', 'new': 'New Posts'}
+        'activity': 'NEW ACTIVITY', 'activity2': 'TOP POSTS',
+        'new': 'Recent Posts'}
 TEST_USER = ''
 TEST_PASS = ''
 
@@ -32,7 +33,14 @@ def initialize_facebook(url: str, username: str, password: str) -> 'WebDriver':
     browser.get(url)
     sleep(1)
     browser.find_element_by_id(ID['generic']).click()
-    browser.find_element_by_partial_link_text(TEXT['activity']).click()
+    # Depending on default sort method, change to sort by recent
+    try:
+        browser.find_element_by_partial_link_text(TEXT['activity']).click()
+    except Exception:
+        try:
+            browser.find_element_by_partial_link_text(TEXT['activity2']).click()
+        except Exception:
+            return browser
     browser.find_element_by_partial_link_text(TEXT['new']).click()
     sleep(1)
     return browser

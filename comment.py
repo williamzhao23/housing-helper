@@ -34,9 +34,9 @@ class Comment:
         """
         Returns True iff self and other are functionally the same comments.
         """
-        return (type(self) == type(other) and self.author == other.author
-                and self.content == other.content
-                and self.messaged == other.messaged)
+        return (type(self) == type(other) and self.author == other.author and
+                self.content == other.content and
+                self.messaged == other.messaged)
 
     def __str__(self) -> str:
         """
